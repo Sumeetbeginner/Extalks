@@ -17,6 +17,7 @@ const UserSchema = new mongoose.Schema(
     },
     profilePic: {
       type: String,
+      default:"null"
     },
     qualification: {
       type: String,
@@ -47,6 +48,7 @@ const UserSchema = new mongoose.Schema(
     bio: {
       type: String,
       min: 5,
+      default : ""
     },
     followers: {
       type: Array,

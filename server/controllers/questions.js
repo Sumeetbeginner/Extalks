@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import Question from "../models/Question.js";
+import Answer from "../models/Answer.js";
 
 //Ask Question
 export const askQuestion = async (req, res) => {
@@ -70,7 +71,9 @@ export const followQuestion = async (req, res) => {
         { new: true }
       );
 
-      return res.status(200).json({ message: "Question unfollowed successfully" });
+      return res
+        .status(200)
+        .json({ message: "Question unfollowed successfully" });
     } else {
       // Follow Question
 
@@ -88,17 +91,52 @@ export const followQuestion = async (req, res) => {
         { new: true }
       );
 
-      return res.status(200).json({ message: "Question followed successfully" });
+      return res
+        .status(200)
+        .json({ message: "Question followed successfully" });
     }
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
 };
 
-
 //View Question
+
 export const viewQuestion = async (req, res) => {
   try {
+    const { question_id } = req.params;
+
+    // Fetch question details by ID
+    const question = await Question.findById(question_id)
+      .populate({
+        path: "questAns", // Populate questAns with answer details
+        model: "Answer",
+        populate: {
+          path: "ansUser", // Populate the user who answered this
+          model: "User",
+          select: "-password", // Exclude password from the user details
+        },
+      })
+      .populate({
+        path: "questUser", // Populate the user who asked this question
+        model: "User",
+        select: "-password", // Exclude password from the user details
+      })
+      .populate({
+        path: "questFollC", // Populate the array of users who followed the question
+        model: "User",
+        select: "-password", // Exclude password from the user details
+      });
+
+    if (!question) {
+      return res.status(404).json({ error: "Question not found" });
+    }
+
+    // Return all necessary data
+    return res.status(200).json({
+      question,
+      answers: question.questAns,
+    });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }

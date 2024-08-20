@@ -31,3 +31,15 @@
 
                  2. Update user.questAsk -> newQuestion ID
 
+5. followQuestion : Request => POST = questionId
+                    
+              1. Check if user already follow question
+
+              2. if(yes): then unfollow
+              Update -> User -> Remove questionId from questFollow of user
+              Remove userid from questFollowC of Question
+
+              3. if(no): then follow
+              Update -> User -> Add userid to questFollowC of question
+              Add questionid to questFollow of user
+

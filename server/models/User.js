@@ -83,6 +83,10 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    categories:{
+      type:Array,
+      required:true
+    }
   },
   {
     timestamps: true,

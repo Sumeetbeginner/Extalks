@@ -15,6 +15,7 @@ export const register = async (req, res) => {
       country,
       email,
       password,
+      categories
     } = req.body;
 
     // Check if user with same email exists
@@ -47,6 +48,7 @@ export const register = async (req, res) => {
       country,
       email,
       password: passwordHash,
+      categories
     });
 
     // Save user data in mongoDB

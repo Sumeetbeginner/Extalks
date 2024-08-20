@@ -24,11 +24,6 @@ const QuestionSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    questRep:{
-        //ID of array of reports of this question
-        type:Array,
-        default:[]
-    }
 
 }, { timestamps: true });
 

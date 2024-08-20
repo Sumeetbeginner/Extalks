@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 // Import Routes
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js'
+import questionRoutes from './routes/questions.js'
 
 const app = express();
 app.use(express.json());
@@ -28,6 +29,7 @@ mongoose.connect(process.env.MONGODB_URL)
 // User Routes
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/question', questionRoutes);
 
 // Hello Route
 app.get('/hello', (req, res) => {

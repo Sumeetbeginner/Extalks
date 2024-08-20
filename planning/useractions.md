@@ -25,3 +25,9 @@
 
                  4. Return user2 data to user1
 
+4. askQuestion : Request => POST = questionInfo 
+                 
+                 1. Create New Question
+
+                 2. Update user.questAsk -> newQuestion ID
+

@@ -10,3 +10,5 @@
 <!-- 5. Create a editProfileInfo API -->
 
 <!-- 6. Follow/Unfollow user api -->
+
+<!-- 7. Profile View API -->

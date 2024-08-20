@@ -110,3 +110,44 @@ export const funfuser = async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 };
+
+// Profile View
+export const profileView = async (req, res) =>{
+  try{
+    
+    const userId = req.user.id
+    const user2_id = req.params.user2_id
+
+    const user2 = await User.findById(user2_id)
+
+    if(!user2){
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    //User Found
+
+    //Check length of profileViews Array
+    if(user2.profileViews.length < 10){
+      //If less than 10 then add current user id
+      await User.findByIdAndUpdate(
+        user2_id,
+        {$push : {profileViews : userId}},
+        {new:true}
+      )
+    }
+    else{
+      user2.profileViews.shift(); // Remove the first (oldest) eleme
+      user2.profileViews.push(currentUserId); // Add the current user's ID to the end
+      await user2.save();
+    }
+
+    const user2Object = user2.toObject();
+    delete user2Object.password;
+
+    res.status(200).json(user2Object);
+
+  }
+  catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+}

@@ -74,7 +74,7 @@ const UserSchema = new mongoose.Schema(
       default: [],
     },
     notification: {
-      // Only latest 10 Notifications {notificationType : upvotes/comment/follow, notificationMess, id : upvotedPost/commentedPost/ FollowedUserId }
+      // Only latest 10 Notifications {notificationType : upvotes/comment/follow, notificationMess, id : upvotedPost/commentedPost/ FollowedUserId, notificationTime }
       type: Array,
       default: [],
     },

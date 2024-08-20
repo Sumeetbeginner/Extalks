@@ -13,7 +13,7 @@
 
 <!-- 7. Profile View API -->
 
-8. Ask Question API
+<!-- 8. Ask Question API -->
 
 9. Follow Question API
 

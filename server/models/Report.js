@@ -21,6 +21,10 @@ const ReportSchema = new mongoose.Schema({
         //Category of Report - eg: Nudity/Violence/etc.
         type:String,
         required:true,
+    },
+    repId:{
+        type:String,
+        required:true
     }
 }, {
     timestamps:true,

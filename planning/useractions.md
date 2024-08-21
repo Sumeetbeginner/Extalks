@@ -90,9 +90,13 @@
 
                      Populate all comments data from comments array of answer data and send all comments
 
-14. sendReport :
+14. sendReport : POST => Report Details 
+                         Create Report
 
-15. getUpvotesUserDetails:
+15. getUpvotesUserDetails: POST => answerId
+                           
+                           Get Array of Upvotes from answer data
+                           and then fetch all upvoters user data
 
 
 

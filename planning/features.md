@@ -33,6 +33,8 @@
 
 17. Get All Comments of Answer API -->
 
-18. Send Report API
+<!-- 18. Send Report API -->
 
-19. Get Upvotes User Details of Answer ID API
+<!-- 19. Get Upvotes User Details of Answer ID API -->
+
+20. Notification logic to all required api

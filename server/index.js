@@ -10,6 +10,7 @@ import userRoutes from './routes/users.js'
 import questionRoutes from './routes/questions.js'
 import answerRoutes from './routes/answers.js'
 import commentRoutes from './routes/comments.js'
+import otherRoutes from './routes/others.js'
 
 const app = express();
 app.use(express.json());
@@ -34,6 +35,7 @@ app.use('/user', userRoutes);
 app.use('/question', questionRoutes);
 app.use('/answer', answerRoutes);
 app.use('/comment', commentRoutes);
+app.use('/others', otherRoutes);
 
 // Hello Route
 app.get('/hello', (req, res) => {

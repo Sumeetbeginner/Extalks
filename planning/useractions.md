@@ -1,4 +1,6 @@
 
+0. Register and Login 
+
 1. editProfileInfo - Request -> POST = Updated Data
                      Update -> User
 
@@ -42,4 +44,28 @@
               3. if(no): then follow
               Update -> User -> Add userid to questFollowC of question
               Add questionid to questFollow of user
+
+6. viewQuestion : Request => GET = question_id from params
+                  
+                  Return Question, Its all answers and user who asked the question
+
+7. ansQuestion : POST => answerDetails
+
+8. upvoteAns :
+
+9. downvoteAns :
+
+10. viewAns : 
+
+11. commentAns :
+
+12. upvoteComment :
+
+13. viewComment :
+
+14. sendReport :
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 

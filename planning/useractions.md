@@ -50,8 +50,17 @@
                   Return Question, Its all answers and user who asked the question
 
 7. ansQuestion : POST => answerDetails
+                 
+                 Create New Answer
+                 Save it
+                 Find user and save ans id in questAns
+                 Find question and save ans id in questAns
 
-8. upvoteAns :
+8. upvoteAns : POST => answerId
+
+               Find Answer
+               add user if in upvote if already no exists
+               remove user from upvote if aleady exists
 
 9. downvoteAns :
 

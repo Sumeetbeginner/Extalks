@@ -20,3 +20,5 @@
 <!-- 10. View Question API -->
 
 <!-- 11. Answer Question API -->
+
+<!-- 12. Upvote and Remove Upvote API -->

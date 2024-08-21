@@ -9,6 +9,7 @@ import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js'
 import questionRoutes from './routes/questions.js'
 import answerRoutes from './routes/answers.js'
+import commentRoutes from './routes/comments.js'
 
 const app = express();
 app.use(express.json());
@@ -32,6 +33,7 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/question', questionRoutes);
 app.use('/answer', answerRoutes);
+app.use('/comment', commentRoutes);
 
 // Hello Route
 app.get('/hello', (req, res) => {

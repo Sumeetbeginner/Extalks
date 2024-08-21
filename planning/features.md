@@ -24,3 +24,15 @@
 <!-- 12. Upvote and Remove Upvote API -->
 
 <!-- 13. Downvote and Remove Downvote API -->
+
+<!-- 14. View Answer API -->
+
+<!-- 15. Comment Answer API
+
+16. Upvote comment API
+
+17. Get All Comments of Answer API -->
+
+18. Send Report API
+
+19. Get Upvotes User Details of Answer ID API

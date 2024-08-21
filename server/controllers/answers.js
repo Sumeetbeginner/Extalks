@@ -144,4 +144,32 @@ export const downvoteAns = async (req, res) => {
 };
 
 //View Answer
-export const viewAns = async (req, res) => {};
+export const viewAns = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { answer_id } = req.params;
+
+    const answer = await Answer.findById(answer_id).populate({
+      path: "ansUser",
+      model: "User",
+      select: "-password",
+    });
+
+    if (!answer) {
+      return res.status(404).json({ error: "Answer not found" });
+    }
+
+    const isUpvoted = answer.ansUpV.includes(userId);
+    const isDownvoted = answer.ansDownV.includes(userId);
+
+    return res.status(200).json({
+      answer: {
+        ...answer._doc,
+        isUpvoted, 
+        isDownvoted, 
+      },
+    });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};

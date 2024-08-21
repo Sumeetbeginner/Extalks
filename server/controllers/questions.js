@@ -100,11 +100,11 @@ export const followQuestion = async (req, res) => {
   }
 };
 
-//View Question
-
+// View Question
 export const viewQuestion = async (req, res) => {
   try {
     const { question_id } = req.params;
+    const userId = req.user.id; // Get current user ID from the JWT
 
     // Fetch question details by ID
     const question = await Question.findById(question_id)
@@ -132,10 +132,24 @@ export const viewQuestion = async (req, res) => {
       return res.status(404).json({ error: "Question not found" });
     }
 
+    // Iterate through each answer and check if the current user has upvoted or downvoted
+    const answersWithVoteStatus = question.questAns.map((answer) => {
+      const isUpvoted = answer.ansUpV.includes(userId);
+      const isDownvoted = answer.ansDownV.includes(userId);
+
+      return {
+        ...answer._doc, // Spread the original answer data
+        isUpvoted, // Add upvote status
+        isDownvoted, // Add downvote status
+      };
+    });
+
     // Return all necessary data
     return res.status(200).json({
-      question,
-      answers: question.questAns,
+      question: {
+        ...question._doc,
+        questAns: answersWithVoteStatus, // Replace questAns with updated answers
+      },
     });
   } catch (err) {
     return res.status(500).json({ message: err.message });

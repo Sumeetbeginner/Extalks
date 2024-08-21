@@ -48,6 +48,7 @@
 6. viewQuestion : Request => GET = question_id from params
                   
                   Return Question, Its all answers and user who asked the question
+                  and also return if user has downvoted or upvoted an answer
 
 7. ansQuestion : POST => answerDetails
                  
@@ -68,15 +69,31 @@
                add user if in downvote if already no exists
                remove user from downvote if aleady exists
 
-10. viewAns : 
+10. viewAns : GET => answerId through Params
+              
+              Find Answer
+              Return all data answer with user data who gave answer
+              and also return if user has downvoted or upvoted an answer
 
-11. commentAns :
+11. commentAns : POST => comment data
+                 
+                 Create New Comment
+                 add comment id to answer comments array
 
-12. upvoteComment :
+12. upvoteComment : POST => commentId
+                    
+                    Upvote Comment if not upvoted
+                    Remove upvote if already upvoted
 
-13. viewComment :
+
+13. allCommentOfAns : POST => answerId
+
+                     Populate all comments data from comments array of answer data and send all comments
 
 14. sendReport :
+
+15. getUpvotesUserDetails:
+
 
 
 

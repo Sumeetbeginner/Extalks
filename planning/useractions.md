@@ -62,7 +62,11 @@
                add user if in upvote if already no exists
                remove user from upvote if aleady exists
 
-9. downvoteAns :
+9. downvoteAns : POST => answerId
+
+               Find Answer
+               add user if in downvote if already no exists
+               remove user from downvote if aleady exists
 
 10. viewAns : 
 

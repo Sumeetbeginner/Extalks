@@ -22,3 +22,5 @@
 <!-- 11. Answer Question API -->
 
 <!-- 12. Upvote and Remove Upvote API -->
+
+<!-- 13. Downvote and Remove Downvote API -->

@@ -98,8 +98,10 @@
                            Get Array of Upvotes from answer data
                            and then fetch all upvoters user data
 
-
-
+15. getAllNotification : GET => userId
+                         
+                         Get All notification of user
+                         then update all - seen : true
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 

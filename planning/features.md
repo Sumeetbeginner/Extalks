@@ -38,3 +38,5 @@
 <!-- 19. Get Upvotes User Details of Answer ID API -->
 
 <!-- 20. Notification logic to all required api -->
+
+<!-- 21. API to retrieve notification and after send it to frontend and update all seen : true -->

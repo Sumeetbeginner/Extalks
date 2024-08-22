@@ -2,7 +2,7 @@ import User from "../models/User.js";
 import Question from "../models/Question.js";
 import Answer from "../models/Answer.js";
 
-//Answer Question
+//Answer Question + NOTIFICATION
 export const ansQuestion = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -32,6 +32,36 @@ export const ansQuestion = async (req, res) => {
       { new: true }
     );
 
+    const userbhai = await User.findById(userId)
+    const questUser = await Question.findById(ansQuest)
+
+     //Notification
+     const newN = {
+      action: "answered your question",
+      user2_id: userId,
+      objType: "Answer",
+      objId: savedAns._id,
+      username2: userbhai.username,
+      seen: false,
+    };
+
+    const notUser = await User.findById(questUser.questUser);
+
+    if (!notUser) { 
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    if (notUser.notification.length < 10) {
+      notUser.notification.push(newN);
+    } else {
+      notUser.notification.shift();
+      notUser.notification.push(newN);
+      
+    }
+
+    await notUser.save();
+
+
     res.status(201).json({
       message: "Answer submitted successfully",
       answer: savedAns,
@@ -41,7 +71,7 @@ export const ansQuestion = async (req, res) => {
   }
 };
 
-// Upvote or Remove Upvote for an Answer
+// Upvote or Remove Upvote for an Answer + NOTIFICATION(when someone upvotes)
 export const upvoteAns = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -86,6 +116,33 @@ export const upvoteAns = async (req, res) => {
         { $addToSet: { ansUpV: userId } },
         { new: true }
       );
+
+      //Notification
+      const newN = {
+        action: "upvoted your answer",
+        user2_id: userId,
+        objType: "Answer",
+        objId: answerId,
+        username2: user.username,
+        seen: false,
+      };
+
+      const notUser = await User.findById(answer.ansUser);
+
+      if (!notUser) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      if (notUser.notification.length < 10) {
+        notUser.notification.push(newN);
+      } else {
+        notUser.notification.shift();
+        notUser.notification.push(newN);
+        
+      }
+
+      await notUser.save();
+
       return res.status(200).json({ message: "Upvoted successfully" });
     }
   } catch (err) {
@@ -165,8 +222,8 @@ export const viewAns = async (req, res) => {
     return res.status(200).json({
       answer: {
         ...answer._doc,
-        isUpvoted, 
-        isDownvoted, 
+        isUpvoted,
+        isDownvoted,
       },
     });
   } catch (err) {

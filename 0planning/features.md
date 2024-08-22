@@ -40,3 +40,7 @@
 <!-- 20. Notification logic to all required api -->
 
 <!-- 21. API to retrieve notification and after send it to frontend and update all seen : true -->
+
+<!-- 22. Frontend React Setup -->
+
+23. Redux Toolkit Setup

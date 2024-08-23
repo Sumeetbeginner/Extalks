@@ -43,4 +43,4 @@
 
 <!-- 22. Frontend React Setup -->
 
-23. Redux Toolkit Setup
+<!-- 23. State Management Redux Toolkit -> Setup -->

@@ -44,3 +44,9 @@
 <!-- 22. Frontend React Setup -->
 
 <!-- 23. State Management Redux Toolkit -> Setup -->
+
+<!-- 24. Components & React Routers Setup -->
+
+<!-- 25. Welcome Page Responsive -->
+
+26. If user is not authenticated then redirect to /welcome

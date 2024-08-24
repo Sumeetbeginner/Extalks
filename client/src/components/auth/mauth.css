@@ -1,0 +1,49 @@
+
+@media only screen and (min-width: 868px)
+{
+
+    .welBlock img{
+        width: 40%;
+        margin-top: 6%;
+    }
+
+    .welBlock{
+        display: flex;
+        width: 70%;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+    }
+
+    .regButtons{
+        position: fixed;
+        margin: auto;
+        width: 100%;
+        bottom: 2%;
+    }
+
+    .regButtons button{
+        width:19%;
+        margin-top: 3%;
+    }
+
+    .regButtons p{
+        margin-top: 3%;
+    }
+
+    .welInfo{
+        margin-top: 0%;
+    }
+
+    .welInfo h2{
+        font-size: 2em;
+
+    }
+    .welInfo p{
+        font-size: 1.2em;
+
+    }
+
+
+}

@@ -65,24 +65,36 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check if email already exists in database
+    // Check if email exists in the database
     const user = await User.findOne({ email: email });
 
     if (!user) {
-      return res.status(400).json({ mess: "user doesnt exist!" });
+      return res.status(400).json({ mess: "User doesn't exist!" });
     }
 
-    // Comparing password with hashed password
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch) return res.status(400).json({ mess: "Incorrect Password!" });
 
-    // JSON WEB TOKEN SETUP
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-    delete user.password;
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 
-    res.status(200).json({ token, user });
+    res.cookie('jwt', token, {
+      httpOnly: true, // Prevents JavaScript from accessing the token
+      secure: process.env.NODE_ENV === 'production', // Ensures the cookie is only sent over HTTPS in production
+      sameSite: 'Strict', // Prevents CSRF attacks by restricting cross-site requests
+      maxAge: 30 * 24 * 60 * 60 * 1000 //30 days
+    });
+
+    delete user.password;
+    res.status(200).json({ user });
+
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
+};
+
+
+// LOGOUT USER
+export const logout = async (req, res) => {
+  res.cookie('jwt', '', { maxAge: 0 });
+  res.status(200).json({ message: "Logged out successfully" });
 };

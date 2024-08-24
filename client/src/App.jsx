@@ -1,17 +1,28 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Welcome from "./components/auth/welcome";
-import Register from "./components/auth/register";
-import Login from "./components/auth/login";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Welcome from "./components/auth/Welcome";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/signup" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          {isAuthenticated ? (
+            <>
+              <Route path="/" element={<Home />} />
+            </>
+          ) : (
+            <>
+              <Route path="/" element={<Navigate to="/welcome" />} />
+            </>
+          )}
         </Routes>
       </BrowserRouter>
     </>

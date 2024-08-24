@@ -49,4 +49,4 @@
 
 <!-- 25. Welcome Page Responsive -->
 
-26. If user is not authenticated then redirect to /welcome
+<!-- 26. If user is not authenticated then redirect to /welcome -->

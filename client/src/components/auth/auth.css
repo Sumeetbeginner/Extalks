@@ -8,7 +8,6 @@
 .welInfo {
   text-align: center;
   margin-top: 6%;
-
 }
 
 .welInfo p {
@@ -26,17 +25,17 @@
   height: 72vh;
 }
 
-.regButtons{
-    position: fixed;
-    width: 100%;
-    bottom: 2%;
+.regButtons {
+  position: fixed;
+  width: 100%;
+  bottom: 2%;
 }
 
-.regButtons p{
-    opacity: 0.4;
-    font-size: 15px;
-    margin-top: 7%;
-    text-align: center;
+.regButtons p {
+  opacity: 0.4;
+  font-size: 15px;
+  margin-top: 7%;
+  text-align: center;
 }
 
 .regButtons button {
@@ -54,7 +53,158 @@
   margin-top: 7%;
 }
 
+.regButtons button:active {
+  opacity: 0.7;
+}
 
-.regButtons button:active{
-    opacity: 0.7;
+.topBoxReg {
+  width: 100%;
+
+  /* background-color: red; */
+}
+
+.flexAppTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3em;
+  padding-bottom: 10%;
+}
+
+.flexAppTitle img {
+  width: 17%;
+}
+
+.bottomBoxReg {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 78vh;
+  background-color: var(--dark);
+  border-radius: 13px 13px 0px 0px;
+  overflow-y: scroll;
+}
+
+.bottomBoxReg input, .bottomBoxReg select {
+  width: 80%;
+  height: 6vh;
+  background-color: var(--light);
+  color: white;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  text-align: center;
+  display: block;
+  margin: auto;
+  border-radius: 7px;
+  margin-top: 8%;
+}
+
+.bottomBoxReg input:nth-child(2) {
+  margin-top: 9% !important;
+}
+
+.bottomBoxReg input:focus {
+  border: solid 2.34px var(--material);
+}
+
+.topBoxReg h3 {
+  text-align: center;
+  padding-top: 10%;
+}
+
+.stepMap {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  /* gap: 5%; */
+  padding-top: 8%;
+}
+
+.stepMap hr {
+  width: 30%;
+}
+
+.stepMap div {
+  /* Responsive Circle */
+  width: 17vw;
+  height: 17vw;
+  border-radius: 50%;
+  background-color: var(--light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 1em;
+}
+
+.stepMap .active {
+  background-color: var(--material);
+}
+
+.stateButtons {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 9%;
+  bottom: 0px;
+  padding-bottom: 10%;
+}
+
+.stateButtons button {
+  display: block;
+  width: 30%;
+  height: 5.5vh;
+  border: none;
+  outline: none;
+  background-color: var(--material);
+  color: white;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.country-input-container {
+  position: relative;
+}
+
+.suggestions-list {
+  position: absolute;
+  width: 80%;
+  background-color: var(--dark);
+  max-height: 150px;
+  overflow-y: auto;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+  /* margin: auto; */
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+.suggestion-item {
+ 
+  padding: 8px;
+  cursor: pointer;
+  margin: auto;
+  border: solid 1px var(--material);
+}
+
+.suggestion-item:hover {
+  background-color: var(--material);
+}
+
+#prevBtn{
+  opacity: 0.5;
 }

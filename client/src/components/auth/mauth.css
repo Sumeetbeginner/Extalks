@@ -45,5 +45,48 @@
 
     }
 
+    .mainRegBox{
+        width: 30%;
+        display: block;
+        margin: auto;
+    }
+    
+    .bottomBoxReg{
+        /* width: 100%; */
+        /* padding-top: 10%; */
+        position: static;
+        bottom: 100px;
+        border-radius: 10px;
+    }
+
+    .stepMap div {
+        /* Responsive Circle */
+        width: 4vw;
+        height: 4vw;
+    }
+    .topBoxReg h3 {
+    
+        padding-top: 7%;
+      }
+
+      .flexAppTitle{
+        padding-bottom: 4%;
+      }
+
+      .stateButtons{
+        position: static;
+      }
+
+      .stateButtons button{
+        height: 5   vh;
+      }
+
+      .bottomBoxReg input{
+        margin-top: 6.5%;
+      }
+
+      .stepMap div{
+        cursor: pointer;
+      }
 
 }

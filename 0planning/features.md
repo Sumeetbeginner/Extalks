@@ -50,3 +50,7 @@
 <!-- 25. Welcome Page Responsive -->
 
 <!-- 26. If user is not authenticated then redirect to /welcome -->
+
+<!-- 27. Registration Page Frontend Responsive -->
+
+28. Register User Backend Connection 

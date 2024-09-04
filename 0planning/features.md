@@ -53,4 +53,4 @@
 
 <!-- 27. Registration Page Frontend Responsive -->
 
-28. Register User Backend Connection 
+<!-- 28. Register User Backend Connection  -->

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./auth.css";
 import "./mauth.css";
 import appLogo from "../../assets/icons/appLogo.png";
+import { useNavigate } from "react-router-dom";
 
 const countryList = [
   { name: "Afghanistan", code: "AF", flag: "🇦🇫" },
@@ -198,18 +199,43 @@ const countryList = [
   { name: "Vietnam", code: "VN", flag: "🇻🇳" },
   { name: "Yemen", code: "YE", flag: "🇾🇪" },
   { name: "Zambia", code: "ZM", flag: "🇿🇲" },
-  { name: "Zimbabwe", code: "ZW", flag: "🇿🇼" }
+  { name: "Zimbabwe", code: "ZW", flag: "🇿🇼" },
 ];
 
 const Register = () => {
   const [stepCount, setStepCount] = useState(1);
-  const [countryInput, setCountryInput] = useState("");
+
   const [filteredCountries, setFilteredCountries] = useState([]);
-  
+
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [profilePic, setProfilePic] = useState("");
+  const [quali, setQuali] = useState("");
+  const [proff, setProff] = useState("");
+  const [gender, setGender] = useState(0);
+  const [countryInput, setCountryInput] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const validateEmail = (emailBhai) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(emailBhai);
+  };
+
+  const validatePassword = (passwordbhai) => {
+    return passwordbhai.length > 5;
+  };
+
+  const validateOther = (otherbhai) => {
+    return otherbhai != "";
+  };
+
   const handleCountryChange = (event) => {
     const inputValue = event.target.value;
     setCountryInput(inputValue);
-  
+
     if (inputValue) {
       const suggestions = countryList.filter((country) =>
         country.name.toLowerCase().startsWith(inputValue.toLowerCase())
@@ -222,14 +248,48 @@ const Register = () => {
 
   const handleCountrySelect = (country) => {
     setCountryInput(country.name);
-    setFilteredCountries([]); 
+    setFilteredCountries([]);
   };
 
   const nextSlide = () => {
     if (stepCount === 1) {
       setStepCount(2);
     } else {
-      registerUser();
+
+      if(!validateEmail(email)){
+        alert("Invalid Email");
+        return
+      }
+      
+      if(!validatePassword(password)){
+        alert("Password should be more than 5 characters");
+        return
+      }
+
+      if(!validateOther(username)){
+        alert("Username cannot be empty");
+        return
+      }
+
+      if(!validateOther(name)){
+        alert("Name cannot be empty");
+        return
+      }
+
+      const userData = {
+        username: username,
+        name: name,
+        profilePic: profilePic,
+        qualification: quali,
+        profession: proff,
+        gender: gender,
+        country: countryInput,
+        email,
+        password,
+        categories: [proff, quali] 
+      };
+
+      registerUser(userData);
     }
   };
 
@@ -239,8 +299,29 @@ const Register = () => {
     }
   };
 
-  const registerUser = () => {
-    console.log('Register User');
+  const registerUser = async (userData) => {
+    console.log("Register User");
+    try {
+      const response = await fetch("http://localhost:3001/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("✅ User Registered Successfully");
+        console.log(data);
+        navigate("/login");
+      } else {
+        alert("⚠️ Registration Failed");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -273,17 +354,49 @@ const Register = () => {
 
         {stepCount === 1 && (
           <>
-            <input type="text" placeholder="Create your Username" />
-            <input type="text" placeholder="Enter Name" />
-            <input type="text" placeholder="Profile Picture Link" />
-            <input type="text" placeholder="Qualification" />
-            <input type="text" placeholder="Profession" />
+            <input
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              type="text"
+              placeholder="Create your Username"
+            />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter Name"
+            />
+            <input
+              value={profilePic}
+              onChange={(e) => setProfilePic(e.target.value)}
+              type="text"
+              placeholder="Profile Picture Link"
+            />
+            <input
+              value={quali}
+              onChange={(e) => setQuali(e.target.value)}
+              type="text"
+              placeholder="Qualification"
+            />
+            <input
+              value={proff}
+              onChange={(e) => setProff(e.target.value)}
+              type="text"
+              placeholder="Profession"
+            />
           </>
         )}
         {stepCount === 2 && (
           <>
-            <select name="gender" id="gender-select">
-              <option value="" selected disabled>Select Gender</option>
+            <select
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              name="gender"
+              id="gender-select"
+            >
+              <option value="" disabled>
+                Select Gender
+              </option>
               <option value="0">Male</option>
               <option value="1">Female</option>
             </select>
@@ -308,23 +421,30 @@ const Register = () => {
                 </div>
               )}
             </div>
-            <input type="text" placeholder="Enter your Email" />
-            <input type="text" placeholder="Create your Password" />
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              placeholder="Enter your Email"
+            />
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="Create your Password"
+            />
           </>
         )}
 
         <div className="stateButtons">
-          <button 
-            id="prevBtn" 
-            onClick={prevSlide} 
+          <button
+            id="prevBtn"
+            onClick={prevSlide}
             style={{ opacity: stepCount === 1 ? 0.5 : 1 }}
           >
             Prev
           </button>
-          <button 
-            id="nextBtn" 
-            onClick={nextSlide}
-          >
+          <button id="nextBtn" onClick={nextSlide}>
             {stepCount === 1 ? "Next" : "Register"}
           </button>
         </div>

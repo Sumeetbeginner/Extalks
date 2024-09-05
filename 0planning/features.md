@@ -54,3 +54,9 @@
 <!-- 27. Registration Page Frontend Responsive -->
 
 <!-- 28. Register User Backend Connection  -->
+
+29. Login Page Frontend Responsive
+
+30. Login User Backend Connection
+
+31. When User Reloads the Page automatically authorize api 

@@ -15,7 +15,7 @@ export const register = async (req, res) => {
       country,
       email,
       password,
-      categories
+      categories,
     } = req.body;
 
     // Check if user with same email exists
@@ -48,7 +48,7 @@ export const register = async (req, res) => {
       country,
       email,
       password: passwordHash,
-      categories
+      categories,
     });
 
     // Save user data in mongoDB
@@ -75,26 +75,53 @@ export const login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ mess: "Incorrect Password!" });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
-
-    res.cookie('jwt', token, {
-      httpOnly: true, // Prevents JavaScript from accessing the token
-      secure: process.env.NODE_ENV === 'production', // Ensures the cookie is only sent over HTTPS in production
-      sameSite: 'Strict', // Prevents CSRF attacks by restricting cross-site requests
-      maxAge: 30 * 24 * 60 * 60 * 1000 //30 days
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "30d",
     });
 
-    delete user.password;
-    res.status(200).json({ user });
+    // res.cookie("jwt", token, {
+    //   httpOnly: true, // Prevents JavaScript from accessing the token
+    //   secure: process.env.NODE_ENV === "production", // Ensures the cookie is only sent over HTTPS in production
+    //   sameSite: "Strict", // Prevents CSRF attacks by restricting cross-site requests
+    //   maxAge: 30 * 24 * 60 * 60 * 1000, //30 days
+    // });
 
+    delete user.password;
+    res.status(200).json({ user, token });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 };
 
-
 // LOGOUT USER
 export const logout = async (req, res) => {
-  res.cookie('jwt', '', { maxAge: 0 });
+  // res.cookie("jwt", "", { maxAge: 0 });
   res.status(200).json({ message: "Logged out successfully" });
+};
+
+// CHECK AUTH
+export const checkAuth = async (req, res) => {
+  try {
+    const token = req.cookies.jwt;
+
+    if (!token) {
+      return res.status(401).json({ message: "User Not Authenticated" });
+    }
+
+    //Verify Token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    //Fetch User from Database
+    const user = await User.findById(decoded.id);
+
+    if (!user) {
+      return res.status(401).json({ message: "User not Found" });
+    }
+
+    res.status(200).json({ user, token });
+  } catch (err) {
+    res
+      .status(401)
+      .json({ message: "Authentication failed", error: err.message });
+  }
 };

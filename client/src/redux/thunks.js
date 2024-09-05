@@ -1,22 +1,23 @@
-
 import axios from "axios";
-import { setAuthState } from "./slices/authSlice";
+import { setAuthState, logout } from "./slices/authSlice.js";
 
 // Thunk for fetching user data
-export const fetchUserData = () => async (dispatch, getState) => {
+export const fetchUserData = (token) => async (dispatch) => {
   try {
-    const { token } = getState().auth;
-    if (!token) throw new Error("No token found");
+    if (!token) throw new Error("No token provided");
 
-    const response = await axios.get("user/current", {
+    const response = await axios.get("http://localhost:3001/user/current", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
+    console.log(response.data);
+    
+
     dispatch(setAuthState({ token, user: response.data }));
   } catch (error) {
     console.error("Failed to fetch user data", error);
-    dispatch(logout()); // Optionally handle logout on fetch error
+    dispatch(logout()); 
   }
 };

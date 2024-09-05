@@ -208,3 +208,25 @@
 #prevBtn{
   opacity: 0.5;
 }
+
+.loginBtn{
+
+      display: block;
+      width: 50%;
+      height: 5.5vh;
+      border: none;
+      outline: none;
+      background-color: var(--material);
+      color: white;
+      font-size: 18px;
+      border-radius: 10px;
+      margin: auto;
+      cursor: pointer;
+      margin-top: 10%;
+  
+
+}
+
+.loginBtn:hover {
+  opacity: 0.8;
+}

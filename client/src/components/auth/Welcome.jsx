@@ -1,16 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./auth.css";
 import "./mauth.css";
+import { useSelector } from "react-redux";
 import appIllu from "../../assets/icons/appIllu.png";
 import { useNavigate } from "react-router-dom";
 
 const Welcome = () => {
   const navigate = useNavigate();
 
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
+
   return (
     <div>
       <div className="welBlock">
-        
         <img src={appIllu} alt="" />
 
         <div className="welInfo">

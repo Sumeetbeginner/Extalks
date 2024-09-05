@@ -1,34 +1,46 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setAuthState, logout } from "./redux/slices/authSlice";
 import { fetchUserData } from "./redux/thunks";
+import Cookies from "js-cookie";
 import Welcome from "./components/auth/Welcome";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Home from "./components/home/Home";
+import Profile from "./components/profile/Profile";
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
+
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
-    // Function to get token from cookies
-    const getTokenFromCookies = () => {
-      const token = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("jwt="))
-        ?.split("=")[1];
-      return token || null;
+    const initializeAuth = async () => {
+      const token = Cookies.get("jwt");
+      console.log("Token from cookies:", token);
+
+      if (token) {
+        try {
+          await dispatch(fetchUserData(token));
+        } catch (error) {
+          console.error("Fetch User Data Error:", error);
+        }
+      }
+
+      setLoading(false);
     };
 
-    const token = getTokenFromCookies();
-
-    if (token) {
-      dispatch(setAuthState({ token }));
-      dispatch(fetchUserData()); // Fetch user data
-    }
+    initializeAuth();
   }, [dispatch]);
+
+  useEffect(() => {
+    console.log("Current Auth State:", { isAuthenticated, user, token });
+  }, [isAuthenticated, user, token]);
+
+  if (loading) return <div className="loader"></div>;
 
   return (
     <BrowserRouter>
@@ -42,6 +54,10 @@ const App = () => {
         <Route
           path="/"
           element={isAuthenticated ? <Home /> : <Navigate to="/welcome" />}
+        />
+        <Route
+          path="/profile"
+          element={isAuthenticated ? <Profile /> : <Navigate to="/welcome" />}
         />
       </Routes>
     </BrowserRouter>

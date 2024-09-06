@@ -11,6 +11,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -41,6 +43,46 @@ const Login = () => {
     }
   };
 
+  const validateEmail = (emailBhai) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(emailBhai);
+  };
+
+  const sendResetLink = async () => {
+    if (!validateEmail(email)) {
+      alert("⚠️ Kindly Enter the Correct Email ID");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch("http://localhost:3001/auth/resetpassword", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setLoading(false);
+        setEmail("");
+        alert("✅ Password Reset Link has been sent to your Registered Email");
+      } else {
+        setLoading(false);
+        setEmail("");
+        alert("⚠️ Failed Sending Password Reset Link");
+      }
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
+  if (loading) return <div className="loader"></div>;
+
   return (
     <div className="mainRegBox">
       <div className="topBoxReg">
@@ -69,6 +111,16 @@ const Login = () => {
         <button className="loginBtn" onClick={handleLogin}>
           Login
         </button>
+
+        <p className="alreadyUser">
+          Forgot Password? <span onClick={sendResetLink}>Reset Password</span>
+        </p>
+
+        <p className="orS">OR</p>
+
+        <p className="alreadyUser" onClick={() => navigate("/signup")}>
+          New User? <span>Sign up</span>
+        </p>
       </div>
     </div>
   );

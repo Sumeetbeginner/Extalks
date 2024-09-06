@@ -7,7 +7,7 @@ const Profile = () => {
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
-    console.log("Current Auth State:", { isAuthenticated, user, token });
+    // console.log("Current Auth State:", { isAuthenticated, user, token });
   }, [isAuthenticated, user, token]);
 
   return <div>Profile</div>;

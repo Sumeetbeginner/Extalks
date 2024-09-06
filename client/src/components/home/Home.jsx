@@ -10,9 +10,8 @@ const Home = () => {
 
   const navigate = useNavigate()
 
-
   useEffect(() => {
-    console.log("Current Auth State:", { isAuthenticated, user, token });
+    // console.log("Current Auth State:", { isAuthenticated, user, token });
   }, [isAuthenticated, user, token]);
   return (
     <div>Home </div>

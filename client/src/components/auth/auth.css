@@ -97,7 +97,7 @@
   display: block;
   margin: auto;
   border-radius: 7px;
-  margin-top: 8%;
+  margin-top: 7%;
 }
 
 .bottomBoxReg input:nth-child(2) {
@@ -148,12 +148,12 @@
 .stateButtons {
   width: 100%;
   display: flex;
-  position: fixed;
+  /* position: fixed; */
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 9%;
+  margin-top: 7%;
   bottom: 0px;
-  padding-bottom: 10%;
+  /* padding-bottom: 10%; */
 }
 
 .stateButtons button {
@@ -229,4 +229,20 @@
 
 .loginBtn:hover {
   opacity: 0.8;
+}
+
+.alreadyUser{
+ text-align: center;
+ margin-top: 5%;
+}
+
+.alreadyUser span{
+  color: #9599ff;
+  font-weight: 600;
+}
+
+.orS{
+  font-size: 20px;
+  text-align: center;
+ margin-top: 5%;
 }

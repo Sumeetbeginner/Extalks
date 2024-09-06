@@ -60,3 +60,9 @@
 <!-- 30. Login User Backend Connection -->
 
 <!-- 31. When User Reloads the Page automatically authorize api  -->
+
+<!-- 32. User Signup and Login and forgot password on both page option
+
+33. create user forgot password functionality with password reset email link api -->
+
+34. Update Password Frontend Responsive with backend connection

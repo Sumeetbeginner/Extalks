@@ -86,6 +86,12 @@ const UserSchema = new mongoose.Schema(
     categories:{
       type:Array,
       required:true
+    },
+    resetToken:{
+      type:String
+    },
+    resetTokenExpire:{
+      type:String
     }
   },
   {

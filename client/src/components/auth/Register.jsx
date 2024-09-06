@@ -255,25 +255,24 @@ const Register = () => {
     if (stepCount === 1) {
       setStepCount(2);
     } else {
-
-      if(!validateEmail(email)){
+      if (!validateEmail(email)) {
         alert("Invalid Email");
-        return
+        return;
       }
-      
-      if(!validatePassword(password)){
+
+      if (!validatePassword(password)) {
         alert("Password should be more than 5 characters");
-        return
+        return;
       }
 
-      if(!validateOther(username)){
+      if (!validateOther(username)) {
         alert("Username cannot be empty");
-        return
+        return;
       }
 
-      if(!validateOther(name)){
+      if (!validateOther(name)) {
         alert("Name cannot be empty");
-        return
+        return;
       }
 
       const userData = {
@@ -286,7 +285,7 @@ const Register = () => {
         country: countryInput,
         email,
         password,
-        categories: [proff, quali] 
+        categories: [proff, quali],
       };
 
       registerUser(userData);
@@ -300,7 +299,7 @@ const Register = () => {
   };
 
   const registerUser = async (userData) => {
-    console.log("Register User");
+    // console.log("Register User");
     try {
       const response = await fetch("http://localhost:3001/auth/register", {
         method: "POST",
@@ -314,7 +313,7 @@ const Register = () => {
 
       if (response.ok) {
         alert("✅ User Registered Successfully");
-        console.log(data);
+        // console.log(data);
         navigate("/login");
       } else {
         alert("⚠️ Registration Failed");
@@ -448,7 +447,12 @@ const Register = () => {
             {stepCount === 1 ? "Next" : "Register"}
           </button>
         </div>
+
+        <p className="alreadyUser">
+        Already a User? <span onClick={() => navigate('/login')}>Login</span>
+      </p>
       </div>
+     
     </div>
   );
 };

@@ -10,7 +10,7 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.isAuthenticated = true;
 
-      Cookies.set("jwt", action.payload.token, { expires: 30 });
+      Cookies.set("jwt", action.payload.token, { expires: 30000 });
     },
     logout: (state) => {
       state.token = null;
@@ -20,7 +20,7 @@ const authSlice = createSlice({
       Cookies.remove("jwt");
     },
     setAuthState: (state, action) => {
-      console.log("setAuthState payload:", action.payload);
+      // console.log("setAuthState payload:", action.payload);
       state.token = action.payload.token;
       state.user = action.payload.user;
       state.isAuthenticated = true;

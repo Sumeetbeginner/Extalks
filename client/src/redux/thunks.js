@@ -12,7 +12,7 @@ export const fetchUserData = (token) => async (dispatch) => {
       },
     });
 
-    console.log(response.data);
+    // console.log(response.data);
     
 
     dispatch(setAuthState({ token, user: response.data }));

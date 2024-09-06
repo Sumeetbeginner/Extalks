@@ -1,6 +1,10 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // REGISTER USER
 export const register = async (req, res) => {
@@ -123,5 +127,105 @@ export const checkAuth = async (req, res) => {
     res
       .status(401)
       .json({ message: "Authentication failed", error: err.message });
+  }
+};
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_ID,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
+export const resetPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "User not found!" });
+    }
+
+    const resetToken = Math.random().toString(36).substring(2, 15);
+
+    user.resetToken = resetToken;
+    user.resetTokenExpire = Date.now() + 3600000; // 1 hour expiration
+
+    await user.save();
+
+    // Send email with reset link
+    const resetLink = `http://localhost:5173/resetpassword/${resetToken}`;
+    const emailSent = await sendEmail(
+      user.email,
+      "Password Reset Link",
+      resetLink
+    );
+
+    if (emailSent) {
+      res.status(200).json({ message: "Password reset link sent!" });
+    } else {
+      console.error("Error sending email");
+      res.status(500).json({ message: "Error sending password reset link." });
+    }
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+// Helper function for sending email
+const sendEmail = async (recipientEmail, subject, text) => {
+  const htmlContent = `
+  <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+    <h2 style="color: #3a3fc5;">Password Reset Request</h2>
+    <p>Hi,</p>
+    <p>We received a request to reset your password for your <strong>Extalks</strong> account.</p>
+    <p>Please click the button below to reset your password:</p>
+    <a href="${text}" style="display: inline-block; padding: 10px 20px; margin: 20px 0; color: #fff; background-color: #3a3fc5; text-decoration: none; border-radius: 5px;">Reset Password</a>
+    <p>If you did not request this, please ignore this email. Your password will remain unchanged.</p>
+    <br>
+    <p>Thanks,</p>
+    <p>The <strong>Extalks</strong> Team</p>
+  </div>
+`;
+
+const mailOptions = {
+  from: process.env.EMAIL_ID,
+  to: recipientEmail,
+  subject: subject,
+  html: htmlContent,
+};
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return true;
+  } catch (error) {
+    console.error("Error sending email:", error);
+    return false;
+  }
+};
+
+export const updatePassword = async (req, res) => {
+  try {
+    const { token: resetToken } = req.params;
+    const {  password } = req.body;
+
+    const user = await User.findOne({ resetToken, resetTokenExpire: { $gt: Date.now() } });
+    if (!user) {
+      return res.status(400).json({ message: "Invalid or expired reset token!" });
+    }
+
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(password, salt);
+
+    user.password = passwordHash;
+    user.resetToken = undefined;
+    user.resetTokenExpire = undefined;
+
+    await user.save();
+
+    res.status(200).json({ message: "Password updated successfully!" });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 };

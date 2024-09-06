@@ -8,6 +8,7 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Home from "./components/home/Home";
 import Profile from "./components/profile/Profile";
+import ResetPassword from "./components/auth/ResetPassword";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -20,7 +21,7 @@ const App = () => {
   useEffect(() => {
     const initializeAuth = async () => {
       const token = Cookies.get("jwt");
-      console.log("Token from cookies:", token);
+      // console.log("Token from cookies:", token);
 
       if (token) {
         try {
@@ -37,7 +38,7 @@ const App = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("Current Auth State:", { isAuthenticated, user, token });
+    // console.log("Current Auth State:", { isAuthenticated, user, token });
   }, [isAuthenticated, user, token]);
 
   if (loading) return <div className="loader"></div>;
@@ -58,6 +59,10 @@ const App = () => {
         <Route
           path="/profile"
           element={isAuthenticated ? <Profile /> : <Navigate to="/welcome" />}
+        />
+        <Route
+          path="/resetpassword/:resetToken"
+          element={ <ResetPassword /> }
         />
       </Routes>
     </BrowserRouter>

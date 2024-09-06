@@ -205,6 +205,7 @@ const mailOptions = {
   }
 };
 
+//Update Using Reset Password Link
 export const updatePassword = async (req, res) => {
   try {
     const { token: resetToken } = req.params;

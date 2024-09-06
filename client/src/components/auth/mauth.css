@@ -59,6 +59,10 @@
         border-radius: 10px;
     }
 
+    .bottomBoxReg input:nth-child(2){
+        margin-top: 5% !important;
+    }
+
     .stepMap div {
         /* Responsive Circle */
         width: 4vw;
@@ -78,7 +82,7 @@
       }
 
       .stateButtons button{
-        height: 5   vh;
+        height: 5vh;
       }
 
       .bottomBoxReg input{
@@ -87,6 +91,30 @@
 
       .stepMap div{
         cursor: pointer;
+      }
+
+      .alreadyUser span{
+        cursor: pointer;
+      }
+
+      .resetPB {
+        width: 40%;
+        background-color: var(--dark);
+        height: 45vh;
+        margin: auto;
+        margin-top: 4%;
+        border-radius: 12px;
+      }
+
+      .resetPB input{
+        background-color: var(--light);
+      }
+
+      .resetPB h2{
+        padding: 3% 0%;
+        background-color: var(--material);
+        color: white;
+        border-radius: 12px 12px 0px 0px;
       }
 
 }

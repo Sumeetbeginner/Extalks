@@ -65,4 +65,5 @@
 
 33. create user forgot password functionality with password reset email link api -->
 
-34. Update Password Frontend Responsive with backend connection
+<!-- 34. Update Password Frontend Responsive with backend connection -->
+

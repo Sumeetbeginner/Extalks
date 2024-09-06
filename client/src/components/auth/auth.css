@@ -246,3 +246,49 @@
   text-align: center;
  margin-top: 5%;
 }
+
+.resetPB h2{
+  text-align: center;
+  color: var(--glow);
+  background-color: var(--dark);
+  padding: 5% 0%;
+}
+
+.resetPB input {
+    width: 80%;
+    height: 7vh;
+    background-color: var(--dark);
+    color: white;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    text-align: center;
+    display: block;
+    margin: auto;
+    border-radius: 7px;
+    margin-top: 8%;
+}
+
+
+.resetPB input:focus {
+    border: solid 2.34px var(--material);
+}
+
+.resetPB button {
+    display: block;
+    width: 50%;
+    height: 6vh;
+    border: none;
+    outline: none;
+    background-color: var(--material);
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    margin: auto;
+    cursor: pointer;
+    margin-top: 8%;
+}
+
+.resetPB button:hover {
+    opacity: 0.8;
+}

@@ -86,7 +86,7 @@ const Login = () => {
   return (
     <div className="mainRegBox">
       <div className="topBoxReg">
-        <h3>Register On</h3>
+        <h3>Login On</h3>
         <div className="flexAppTitle">
           <h1>Exta</h1>
           <img src={appLogo} alt="App Logo" />

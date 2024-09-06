@@ -72,3 +72,7 @@
 <!-- 36. Navbar Functionality -->
 
 <!-- 37. Feed API to get Feed only 3 posts per api call line by line if counter exceeds number of posts return Nothing and sort by particular order -->
+
+38. Frontend and Backend of Feed Posts and show post
+
+39. Style the Feed and Responsive

@@ -47,3 +47,7 @@
     height: 11vw;
     border-radius: 100px;
 }
+
+.active i{
+  color: var(--glow);
+}

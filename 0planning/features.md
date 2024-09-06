@@ -69,4 +69,4 @@
 
 <!-- 35. Create Responsive Navbar & user profile and setting -->
 
-36. Navbar Functionality
+<!-- 36. Navbar Functionality -->

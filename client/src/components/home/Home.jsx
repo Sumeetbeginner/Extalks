@@ -13,15 +13,15 @@ const Home = () => {
     <div>
     <div className="onlymobile">
       <div className="topNavbar">
-        <i className="fas fa-cog"></i>
+        <i onClick={() => navigate('/settings')} className="fas fa-cog"></i>
   
         {user.profilePic !== "" ? (
-          <img src={user.profilePic} alt="Profile Picture" />
+          <img onClick={() => navigate('/profile')} src={user.profilePic} alt="Profile Picture" />
         ) : (
           user.gender === false ? (
-            <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="Default Male Avatar" />
+            <img onClick={() => navigate('/profile')} src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="Default Male Avatar" />
           ) : (
-            <img src="https://cdn-icons-png.flaticon.com/128/4140/4140047.png" alt="Default Female Avatar" />
+            <img onClick={() => navigate('/profile')} src="https://cdn-icons-png.flaticon.com/128/4140/4140047.png" alt="Default Female Avatar" />
           )
         )}
       </div>

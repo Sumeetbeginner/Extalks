@@ -1,0 +1,54 @@
+@media only screen and (min-width: 868px) {
+  .onlypc {
+    display: block;
+  }
+
+  .downNav {
+    display: flex !important;
+    flex-direction: column;
+    margin-top: 60%;
+  }
+
+  .downNav i:nth-child(1) {
+    margin-top: 140%;
+  }
+
+  .onlymobile {
+    display: none;
+  }
+
+  .navBody {
+    flex-direction: column;
+    width: 8%;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+    height: 100vh;
+    padding: 0%;
+  }
+
+  .profileDetail img {
+    width: 60%;
+    border-radius: 100px;
+    display: block;
+    margin: auto;
+    margin-top: 30%;
+    cursor: pointer;
+  }
+
+  .profileDetail img:hover {
+    opacity: 0.9;
+  }
+
+  .navBody i {
+    font-size: 26px;
+  }
+
+  .navBody i:hover {
+    color: var(--glow);
+  }
+
+  .compNav {
+    margin-top: 15%;
+  }
+}

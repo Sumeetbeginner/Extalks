@@ -67,6 +67,6 @@
 
 <!-- 34. Update Password Frontend Responsive with backend connection -->
 
-35. Create Responsive Navbar & user profile and setting
+<!-- 35. Create Responsive Navbar & user profile and setting -->
 
 36. Navbar Functionality

@@ -1,12 +1,12 @@
 
 import express from 'express'
-import { getAllNotification, sendReport, userDetailsUpvote } from '../controllers/others.js'
+import { getAllNotification, sendReport, userDetailsUpvote, feedPosts } from '../controllers/others.js'
 import { verifyToken } from '../middleware/auth.js'
 
 const router = express.Router()
 
 router.post('/sendreport', verifyToken, sendReport)
 router.post('/getupvotesdetails', verifyToken, userDetailsUpvote)
-router.get('/getallnotification', verifyToken, getAllNotification)
+router.get('/feed', verifyToken, feedPosts)
 
 export default router

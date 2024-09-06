@@ -61,7 +61,7 @@ const Main2 = () => {
 
   return (
     <>
-      {!noNavbarP.includes(location.pathname) && <Navbar />}
+      {isAuthenticated && !noNavbarP.includes(location.pathname) && <Navbar />}
       <Routes>
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/signup" element={<Register />} />

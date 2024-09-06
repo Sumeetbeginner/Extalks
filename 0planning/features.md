@@ -70,3 +70,5 @@
 <!-- 35. Create Responsive Navbar & user profile and setting -->
 
 <!-- 36. Navbar Functionality -->
+
+<!-- 37. Feed API to get Feed only 3 posts per api call line by line if counter exceeds number of posts return Nothing and sort by particular order -->

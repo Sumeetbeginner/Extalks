@@ -1,7 +1,144 @@
-
-.answers-list{
-    width: 90%;
-    height: 60vh;
-    background-color: var(--dark);
-    overflow-y: scroll;
+.feedBox {
+  width: 89%;
+  height: 74.7vh;
+  background-color: var(--dark);
+  margin: auto;
+  border-radius: 10px;
+  overflow-y: scroll;
+  padding: 1% 3%;
 }
+
+.topNavbar i,
+.topNavbar img {
+  margin-bottom: 1.2%;
+}
+
+.sorting select {
+  width: 30%;
+  height: 4vh;
+  outline: none;
+  background-color: var(--dark);
+  outline: none;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 1.6%;
+  text-align: center;
+  margin-left: 3%;
+}
+
+.postD {
+  width: 94%;
+  height: fit-content;
+  padding: 1% 3%;
+  background-color: var(--light);
+  margin-top: 6%;
+  margin-bottom: 6%;
+  border-radius: 6px;
+padding-bottom: 4%;
+}
+
+.postD img {
+  width: 100%;
+  margin: auto;
+  border-radius: 5px;
+  margin-top: 4%;
+}
+
+.lastIn {
+  text-align: center;
+  color: var(--glow);
+  font-weight: 600;
+  margin-bottom: 2%;
+}
+
+.questionB h2 {
+  font-size: 17px;
+  color: var(--glow);
+}
+
+.answerS {
+  font-size: 15px;
+  margin-top: 4%;
+}
+
+.answerS pre {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  border-radius: 5px;
+  font-family: "Open Sans";
+}
+
+.readA {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  color: rgb(255, 101, 101);
+  font-weight: 600;
+}
+
+.userAnswerD {
+  width: 94.5%;
+  height: 6vh;
+  border-radius: 5px;
+  background-color: #4a4b64;
+  margin-top: 4%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0% 3%;
+}
+
+.userImg{
+    width: 13%;
+    height: 5.5vh;
+}
+.userAnswerD img {
+  width: 100%;
+  max-width: 150px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+  
+}
+
+.userUsername{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--glow);
+}
+
+.userProf{
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.userSI{
+    margin-left: 4%;
+}   
+
+.engageD{
+    width: 100%;
+    height: 6vh;
+    background-color: var(--dark);
+    margin-top: 5%;
+    /* margin-bottom: 5%; */
+    border-radius: 5px;
+}
+
+.engageD{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.engageD div{
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    width: 30%;
+    gap: 15%;
+}
+

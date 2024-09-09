@@ -1,4 +1,62 @@
 
 @media only screen and (min-width: 868px)
 {
+    .pcbhai{
+        width: 90%;
+        margin: auto;
+        margin-left: 8%;
+
+    }
+
+    .pcbhai select{
+        height: 5vh;
+        font-size: 19px;
+        width: 20%;
+        margin-top: 2%;
+    }
+
+    .feedBox{
+        height: 84vh;
+    }
+
+    .userAnswerD{
+        margin-top: 2%;
+    }
+
+    .questionB{
+        margin-top: 0.7%;
+    }
+
+    .answerS{
+        margin-top: 2%;
+        font-size: 16.5px;
+    }
+
+    .readA{
+        margin-top: 0.7%;
+    }
+
+    .engageD{
+        margin-top: 2%;
+        width: 26%;
+        
+    }
+
+    .postD{
+        padding-bottom: 2.5%;
+        margin-top: 2%;
+        margin-bottom: 3%;
+    }
+    
+    .readA{
+        cursor: pointer;
+    }
+    .engageD i{
+        cursor: pointer;
+    }
+
+    .postD img{
+        width: 60%;
+        margin-top: 2%;
+    }
 }

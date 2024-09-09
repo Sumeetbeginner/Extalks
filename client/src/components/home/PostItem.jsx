@@ -13,10 +13,6 @@ const PostItem = ({ answer, expanded, toggleReadMore, user }) => {
 
   useEffect(() => {
     setIsUpvoted(answer.ansUpV.includes(user._id));
-    // console.log(isUpvoted);
-    // console.log(answer.ansUpV);
-    // console.log(user);
-    
     setIsDownvoted(answer.ansDownV.includes(user._id));
   }, [answer]);
 
@@ -57,7 +53,7 @@ const PostItem = ({ answer, expanded, toggleReadMore, user }) => {
         )}
       </div>
       {answer.ansPic !== "" && <img src={answer.ansPic} alt="Answer" />}
-
+         
       <div className="engageD">
         <div className="upvoteD">
           <i

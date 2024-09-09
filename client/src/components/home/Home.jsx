@@ -111,8 +111,8 @@ const Home = () => {
 
   return (
     <div>
-      <div className="onlymobile">
-        <div className="topNavbar">
+      <div className="pcbhai">
+        <div className="topNavbar onlymobile">
           <i onClick={() => navigate("/settings")} className="fas fa-cog"></i>
 
           {user.profilePic !== "" ? (

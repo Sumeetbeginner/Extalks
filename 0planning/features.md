@@ -76,3 +76,9 @@
 <!-- 38. Frontend and Backend of Feed Posts and show post -->
 
 39. Style the Feed and Responsive 
+
+40. Handle Upvotes & Downvotes
+
+41. Handle Post User comments and show other user comments  
+
+42. Onclick user profile (comment & answer) open user profile
